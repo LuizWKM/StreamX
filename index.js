@@ -1,11 +1,16 @@
 import express from "express"
 import mongoose from "mongoose"
 
+
 const app = express();
+
+// Importando as rotas (endpoints) de Filmes
+import movieRoutes from './routes/movieRoutes.js'
 
 // Configurações do Express
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use('/', movieRoutes)
 
 // Iniciando a conexão com o banco de dados do MongoDB
 mongoose.connect("mongodb://127.0.0.1:27017/api-streamX")
