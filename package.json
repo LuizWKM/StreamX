@@ -1,0 +1,16 @@
+{
+  "name": "streamx",
+  "version": "1.0.0",
+  "description": "Repositório feito para o projeto de API Rest da matéria de DW3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.13.1"
+  }
+}
