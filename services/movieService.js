@@ -1,4 +1,4 @@
-import Movie from "../models/movies.js"
+import Movie from "../models/Movies.js"
 
 class movieService {
     // Função para listar todos os filmes.
@@ -31,7 +31,7 @@ class movieService {
     // Função para deletar filmes.
     async Delete(id) {
         try {
-            await Game.findByIdAndDelete(id);
+            await Movie.findByIdAndDelete(id);
             console.log(`Filme que tem a id: ${id} foi excluido.`);
         } catch (error) {
             console.log(error);
@@ -55,6 +55,7 @@ class movieService {
         }
     }
 
+    // Função para listar um filme
     async getOne(id){
         try{
             const movie = await Movie.findOne({ _id: id});

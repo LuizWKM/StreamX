@@ -4,18 +4,21 @@ import jwt from "jsonwebtoken";
 // JWTSecret
 const JWTSecret = "apistreamx";
 
-// Cadastrando uma conta
 const createAccount = async (req, res) => {
-    try { 
-        const {email, password} = req.body;
-        // HASH DE SENHA
-        await accountService.Create(email, password);
-        res.sendStatus(201); // Cod. 201 (CREATED)
+    try {
+      const { email, password } = req.body;
+      // Verifique se os dados foram passados corretamente
+      if (!email || !password) {
+        return res.status(400).json({ error: "Email e senha são obrigatórios" });
+      }
+      // Criando a conta
+      await accountService.Create(email, password);
+      res.sendStatus(201); // Cod. 201 (CREATED)
     } catch (error) {
-        console.log(error)
-        res.sendStats(500); // Erro interno do servidor
+      console.log(error);
+      res.status(500).json({ error: "Erro interno ao criar a conta." });
     }
-}
+  };  
 
 // Função para Login da conta
 const loginAccount = async (req, res) => {
@@ -27,7 +30,9 @@ const loginAccount = async (req, res) => {
             // Usuário encontrado
             if (account != undefined){
                 // Senha correta
-                if (user.password == password){
+                // Comparando a senha para ver se é igual a senha do banco criptografada
+                const isMatch = await account.comparePassword(password);
+                if (isMatch){
                     // Gerando o token
                     jwt.sign(
                         { id: account._id, email: account.email }, JWTSecret,
@@ -45,7 +50,7 @@ const loginAccount = async (req, res) => {
                 }
             // Usuário não encontrado
             } else {
-                res.status(404).json({error: "Usuário não encontrado."}) //Not found
+                res.status(404).json({error: "Conta não encontrada."}) //Not found
             }
         // E-mail inválido ou vazio
         } else {

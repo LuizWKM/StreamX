@@ -9,6 +9,7 @@ class accountService {
                 password
             });
             await newAccount.save();
+            return newAccount;
         } catch (error){
             console.log(error);
         }

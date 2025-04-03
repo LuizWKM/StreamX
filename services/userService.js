@@ -23,6 +23,39 @@ class userService {
             console.log(error)
         }
     }
+
+    // Função para deletar usuários.
+    async Delete(id) {
+        try {
+            await User.findByIdAndDelete(id);
+            console.log(`Usuário que tem a id: ${id} foi excluido.`);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    // Função para alterar usuários
+    async Update(id, name){
+        try{
+            await User.findByIdAndUpdate(id, {
+                name
+            });
+            console.log(`Dados do usuário com a id ${id} alterados com sucesso.`)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    // Função para listar um usuário
+    async getOne(id){
+        try{
+            const user = await User.findOne({ _id: id});
+            return user;
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
+
 
 export default new userService;

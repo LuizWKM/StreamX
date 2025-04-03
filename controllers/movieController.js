@@ -6,7 +6,7 @@ const getAllMovies = async (req, res) => {
     try {
         const movies = await movieService.getAll();
         //Requisição feita com sucesso - Código 200 (OK)
-        res.status(200).json({ games: games });
+        res.status(200).json({ movies: movies });
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: "Erro interno do servidor ao tentar listar todos os filmes."})
@@ -23,7 +23,7 @@ const createMovie = async (req, res) => {
         res.sendStatus(201); // Código 201 (CREATED)
     } catch (error) {
         console.log(error);
-        res.status(500).json({error: "Erro interno do servidor ao tentar criar o servidor."});
+        res.status(500).json({error: "Erro interno do servidor ao tentar criar o filme."});
     }
 };
 

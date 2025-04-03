@@ -15,6 +15,6 @@ const movieSchema = new mongoose.Schema({
     extraInformation: [extraInfoSchema]
 })
 
-const Movie = mongoose.model("Movies", movieSchema);
+const Movie = mongoose.model("Movie", movieSchema);
 
 export default Movie;
