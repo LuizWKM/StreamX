@@ -40,7 +40,7 @@ const deleteMovie = async (req, res) => {
         }
     } catch (error) {
         console.log(error);
-        res.status(500).json({ error: "Erro interno do servidor ao tentar deletar o jogo."});
+        res.status(500).json({ error: "Erro interno do servidor ao tentar deletar o filme."});
     }
 };
 
@@ -57,7 +57,7 @@ const updateMovie = async (req, res) => {
         }
     } catch (error) {
         console.log(error);
-        res.status(500).json({error: "Erro interno do servidor ao atualizar o jogo."})
+        res.status(500).json({error: "Erro interno do servidor ao atualizar o filme."})
     }
 };
 

@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 const extraInfoSchema = new mongoose.Schema({
     director: String,
-    movie_rating: Number
+    movie_rating: Number,
+    synopsis: String
 })
 
 
