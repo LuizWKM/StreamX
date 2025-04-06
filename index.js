@@ -2,6 +2,9 @@ import express from "express"
 import Movies from "./models/Movies.js"
 import Account from "./models/Accounts.js"
 import mongoose from "./config/db-connection.js"
+import swaggerUi from 'swagger-ui-express';
+import YAML from 'yamljs';
+const swaggerDocument = YAML.load('./swagger/swagger.yaml');
 const app = express();
 
 // Importando as rotas (endpoints) de Filmes
@@ -17,6 +20,7 @@ app.use(express.json());
 app.use('/', movieRoutes)
 app.use('/', accountRoutes)
 app.use('/', userRoutes);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Iniciando a conexão com o banco de dados do MongoDB
 //mongoose.connect("mongodb://127.0.0.1:27017/api-streamX")
